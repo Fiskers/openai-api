@@ -1,5 +1,9 @@
 # openai-api
 
+> [!WARNING]
+> **Legacy and unmaintained API wrapper.** This repository documents retired GPT-3-era endpoints and old model names. It should not be used for new OpenAI integrations without a full migration and dependency review. Do not assume the examples, endpoints, token limits, or response formats are current. Use the current official OpenAI SDK and documentation for new projects.
+
+
 ## Overview
 This package is a tiny node wrapper for the openAI API, if you find any issue please feel free to message me or open a PR :).
 
