@@ -15,6 +15,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      OPENAI_TEST_API_KEY: ${{ secrets.OPENAI_TEST_API_KEY }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -25,5 +27,11 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
-      - name: Run tests
+      - name: Validate package contents
+        run: npm pack --dry-run
+      - name: Run live API tests
+        if: env.OPENAI_TEST_API_KEY != ''
         run: npm test
+      - name: Explain skipped live tests
+        if: env.OPENAI_TEST_API_KEY == ''
+        run: echo "Live API tests skipped because OPENAI_TEST_API_KEY is not configured."
